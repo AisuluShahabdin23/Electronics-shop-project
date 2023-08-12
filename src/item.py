@@ -32,6 +32,12 @@ class Item:
         else:
             self.__name = name
 
+    def __str__(self) -> str:
+        return f"{self.name}"
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
     @classmethod
     def instantiate_from_csv(cls, file_path: str = '../src/items.csv'):
         Item.all.clear()
