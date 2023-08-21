@@ -1,6 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 
 item1 = Item("Смартфон", 10000, 20)
 item2 = Item("Ноутбук", 20000, 5)
@@ -23,6 +23,9 @@ def test_apply_discount():
 def test_instantiate_from_csv():
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
+
+    with pytest.raises(FileNotFoundError):
+        assert Item.instantiate_from_csv('src/test2.csv') == 'Отсутствует файл src/test2.csv'
 
 
 def test_string_to_number():
